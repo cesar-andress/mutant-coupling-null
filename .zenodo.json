@@ -1,10 +1,15 @@
 {
   "title": "mutant-coupling-null: a chance-corrected test of mutant-real-fault coupling",
+  "version": "0.1.1",
   "upload_type": "software",
-  "description": "Research artifact for a chance-corrected test of mutant-real-fault coupling. The primary question is whether a fault-triggering test satisfies the historical unique-kill coupling criterion more often than a coverage-matched ordinary non-triggering test on the same kill matrices. Author identity, ORCID, affiliation, and archival DOI are HUMAN_REQUIRED. Intended GitHub identity: cesar-andress/mutant-coupling-null. This initialization deposit contains no experimental results and does not redistribute third-party benchmark data.",
+  "access_right": "open",
+  "license": "MIT",
+  "language": "eng",
   "creators": [
     {
-      "name": "HUMAN_REQUIRED"
+      "name": "Andrés, César",
+      "affiliation": "CRIA-BDHS Research Group, Escuela Politécnica Superior de Tecnología y Ciencia, Universidad Camilo José Cela, Spain",
+      "orcid": "0009-0001-8968-3404"
     }
   ],
   "keywords": [
@@ -14,6 +19,14 @@
     "construct validity",
     "chance-corrected coupling"
   ],
-  "license": "MIT",
-  "notes": "No DOI is assigned yet. Do not invent a DOI. Intended GitHub identity: git@github.com:cesar-andress/mutant-coupling-null.git. This file does not create a Zenodo record."
+  "description": "Research artifact for a chance-corrected test of mutant-real-fault coupling. The primary question is whether a fault-triggering test satisfies the historical unique-kill coupling criterion more often than a coverage-matched ordinary non-triggering test on the same kill matrices. Original code is MIT-licensed. Defects4J, Major, and other third-party tools remain under their upstream licenses and are not redistributed here. No coupling estimates are archived in this version. GitHub: https://github.com/cesar-andress/mutant-coupling-null",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/cesar-andress/mutant-coupling-null",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Single author: César Andrés. Do not invent a DOI. After GitHub is linked in Zenodo, a GitHub Release creates the archival record and assigns the DOI; then update CITATION.cff with that DOI."
 }

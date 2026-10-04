@@ -49,8 +49,25 @@ MIT here does **not** relicense Defects4J, Major, or any other third-party corpu
 
 Acquisition notes: `data/README.md` and `external/`.
 
-## Authors and archival identifiers
+## Author
 
-Author identity, ORCID, affiliation, and archival DOI are `HUMAN_REQUIRED`.
-The intended public Git hosting identity is `cesar-andress/mutant-coupling-null`.
-See `CITATION.cff` and `.zenodo.json`.
+**César Andrés** (corresponding author)  
+ORCID: [0009-0001-8968-3404](https://orcid.org/0009-0001-8968-3404)  
+Email: cesar.andress@ucjc.edu  
+Affiliation: CRIA-BDHS Research Group, Escuela Politécnica Superior de Tecnología y Ciencia, Universidad Camilo José Cela, Spain
+
+Machine-readable metadata: `CITATION.cff` and `.zenodo.json`.
+
+## Cite this artifact
+
+Until Zenodo assigns a DOI, cite the GitHub repository and the version in `CITATION.cff` (currently 0.1.1). Do not invent a DOI.
+
+## Zenodo
+
+This GitHub repository is the canonical software source for a Zenodo deposit.
+
+1. On [Zenodo](https://zenodo.org), enable GitHub integration for `cesar-andress/mutant-coupling-null`.
+2. When a deposit is authorized, create a GitHub Release from a hygiene-checked tag.
+3. Put the version DOI into `CITATION.cff` after Zenodo mints it.
+
+Do not redistribute Defects4J or Major in the deposit. `.zenodo.json` is the deposit metadata template. See `docs/zenodo.md`.
