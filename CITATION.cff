@@ -6,6 +6,7 @@ authors:
   - name: HUMAN_REQUIRED
 version: "0.0.0"
 license: MIT
+repository-code: "https://github.com/cesar-andress/mutant-coupling-null"
 keywords:
   - mutation testing
   - mutant-real-fault coupling
@@ -18,5 +19,6 @@ abstract: >-
   historical unique-kill coupling criterion more often than a coverage-matched
   ordinary non-triggering test on the same kill matrices. No results are
   archived in this initialization release. Author identity, ORCID,
-  affiliation, repository URL, and archival DOI are HUMAN_REQUIRED and are
-  not invented here.
+  affiliation, and archival DOI are HUMAN_REQUIRED and are not invented here.
+  The intended public Git hosting identity is
+  https://github.com/cesar-andress/mutant-coupling-null.

@@ -11,4 +11,4 @@ Intended, not executed:
 
 No artifact is repaired. No model is prompted. No oracle-feedback loop.
 
-Do not run this protocol until the parent project gates authorize it.
+Do not run this protocol until study authorization is recorded.

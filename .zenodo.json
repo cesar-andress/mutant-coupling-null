@@ -1,7 +1,7 @@
 {
   "title": "mutant-coupling-null: a chance-corrected test of mutant-real-fault coupling",
   "upload_type": "software",
-  "description": "Research artifact for a chance-corrected test of mutant-real-fault coupling. The primary question is whether a fault-triggering test satisfies the historical unique-kill coupling criterion more often than a coverage-matched ordinary non-triggering test on the same kill matrices. Author identity, ORCID, affiliation, GitHub remote, and archival DOI are HUMAN_REQUIRED. This initialization deposit contains no experimental results and does not redistribute third-party benchmark data.",
+  "description": "Research artifact for a chance-corrected test of mutant-real-fault coupling. The primary question is whether a fault-triggering test satisfies the historical unique-kill coupling criterion more often than a coverage-matched ordinary non-triggering test on the same kill matrices. Author identity, ORCID, affiliation, and archival DOI are HUMAN_REQUIRED. Intended GitHub identity: cesar-andress/mutant-coupling-null. This initialization deposit contains no experimental results and does not redistribute third-party benchmark data.",
   "creators": [
     {
       "name": "HUMAN_REQUIRED"
@@ -15,5 +15,5 @@
     "chance-corrected coupling"
   ],
   "license": "MIT",
-  "notes": "No DOI is assigned yet. Do not invent a DOI. GitHub remote is HUMAN_REQUIRED."
+  "notes": "No DOI is assigned yet. Do not invent a DOI. Intended GitHub identity: git@github.com:cesar-andress/mutant-coupling-null.git. This file does not create a Zenodo record."
 }

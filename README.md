@@ -26,7 +26,7 @@ Original analysis code, configs, tests, and (later) derived tables for a chance-
 - It does not redistribute Defects4J, Major, or other third-party benchmarks.
 - It does not contain confidential data.
 - It does not claim publication or journal acceptance.
-- It does not contain the LaTeX manuscript (that lives in the sibling `paper/` workspace).
+- It does not contain the LaTeX manuscript.
 
 ## Licenses
 
@@ -41,4 +41,6 @@ Acquisition notes: `data/README.md` and `external/`.
 
 ## Authors and archival identifiers
 
-Author identity, ORCID, affiliation, GitHub remote, and archival DOI are `HUMAN_REQUIRED`. Do not invent them. See `CITATION.cff` and `.zenodo.json`.
+Author identity, ORCID, affiliation, and archival DOI are `HUMAN_REQUIRED`.
+The intended public Git hosting identity is `cesar-andress/mutant-coupling-null`.
+See `CITATION.cff` and `.zenodo.json`.
