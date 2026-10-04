@@ -11,11 +11,21 @@ The primary estimand is **excess coupling**: the coupling rate among fault-trigg
 ## Status
 
 - Local overlap gate: PASS
-- Global novelty / scoop gate: NOT YET PASSED
+- Global novelty / scoop gate: PARTIAL (scientifically distinct; see the parent project audit)
+- Environment smoke (T3): pinned Defects4J 3.0.1 / Java 11 / Major 3.0.1
 - MVP: NOT STARTED
 - Full study: NOT AUTHORIZED
+- Anchor reproduction: NOT claimed (stock mutation only; no kill map)
 
-Reproduction instructions will be added after an authorized MVP.
+## Reproduce the environment smoke
+
+Requires Docker, network only for the image build (open-source downloads).
+
+```
+./scripts/run_t3_smoke.sh
+```
+
+Details: `docs/environment.md`. Outputs of class `results/raw/smoke/` (manifest tracked; bulky logs ignored).
 
 ## What this repository is
 

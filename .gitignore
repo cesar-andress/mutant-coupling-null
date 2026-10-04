@@ -63,6 +63,15 @@ data/processed/*
 
 results/raw/*
 !results/raw/.gitkeep
+!results/raw/smoke/
+results/raw/smoke/*
+!results/raw/smoke/.gitkeep
+!results/raw/smoke/T3_SMOKE_MANIFEST.json
+!results/raw/smoke/output_inventory.json
+!results/raw/smoke/summary.csv
+!results/raw/smoke/versions.txt
+!results/raw/smoke/trigger_tests.txt
+!results/raw/smoke/modified_classes.txt
 results/derived/*
 !results/derived/.gitkeep
 

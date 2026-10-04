@@ -1,5 +1,5 @@
 # Results
 
-No results exist yet.
+No coupling estimates exist.
 
-Later raw outputs go under `raw/` (mostly gitignored). Derived summaries, tables, and figures that are intended for archival may be committed after an authorized study, with provenance.
+The T3 smoke writes engineering outputs under `raw/smoke/`. The machine-readable manifest `T3_SMOKE_MANIFEST.json` is tracked. Bulky logs and working copies are gitignored.

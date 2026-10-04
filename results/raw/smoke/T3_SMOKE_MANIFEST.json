@@ -1,0 +1,99 @@
+{
+  "task_id": "T3",
+  "project": "Lang",
+  "bug_id": "1",
+  "revision": "FIXED",
+  "version_id": "1f",
+  "defects4j_requested_version": "3.0.1",
+  "defects4j_tag": "v3.0.1",
+  "defects4j_sha": "6d54320e0db5a357f9ab38a8e4d2e5aead7e1c09",
+  "defects4j_upstream": "https://github.com/rjust/defects4j.git",
+  "major_version": "3.0.1",
+  "java_major": "11",
+  "container_base": "ubuntu:22.04",
+  "image_id": "sha256:dff4189bedaf494804799aadbfe9ddd0648bc455944ce392af5ccaa775d0a4cf",
+  "commands": [
+    "defects4j checkout -p Lang -v 1f",
+    "defects4j compile",
+    "defects4j test -r",
+    "defects4j mutation -r"
+  ],
+  "exit_statuses": {
+    "checkout": 0,
+    "compile": 0,
+    "tests": 0,
+    "mutation": 0
+  },
+  "runtime": {
+    "checkout": {
+      "wall_sec": "3.39",
+      "user_sec": "0.25",
+      "sys_sec": "0.14",
+      "max_rss_kb": "42336",
+      "elapsed_epoch_sec": "3"
+    },
+    "compile": {
+      "wall_sec": "3.12",
+      "user_sec": "23.94",
+      "sys_sec": "0.65",
+      "max_rss_kb": "497796",
+      "elapsed_epoch_sec": "3"
+    },
+    "tests": {
+      "wall_sec": "0.57",
+      "user_sec": "1.63",
+      "sys_sec": "0.10",
+      "max_rss_kb": "113308",
+      "elapsed_epoch_sec": "1"
+    },
+    "mutation": {
+      "wall_sec": "11.69",
+      "user_sec": "35.05",
+      "sys_sec": "1.58",
+      "max_rss_kb": "1532240",
+      "elapsed_epoch_sec": "12"
+    }
+  },
+  "failing_tests_reported": 0,
+  "mutants_generated": 940,
+  "output_files": {
+    "work_root_csv": [
+      "covMap.csv",
+      "kill.csv",
+      "summary.csv",
+      "testMap.csv"
+    ],
+    "known_files": [
+      {
+        "filename": "summary.csv",
+        "bytes": 149
+      },
+      {
+        "filename": "kill.csv",
+        "bytes": 8176
+      },
+      {
+        "filename": "mutants.log",
+        "bytes": 136968
+      },
+      {
+        "filename": "testMap.csv",
+        "bytes": 235
+      },
+      {
+        "filename": "covMap.csv",
+        "bytes": 5759
+      },
+      {
+        "filename": ".mutation.log",
+        "bytes": 3217
+      }
+    ]
+  },
+  "exportKillMap": false,
+  "per_test_kill_matrix": false,
+  "coupling_calculated": false,
+  "paid_external_apis": 0,
+  "gpu": false,
+  "uname": "Linux x86_64"
+}

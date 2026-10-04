@@ -1,6 +1,6 @@
 # Reproduction
 
-Reproduction instructions will be added after an authorized MVP.
+The environment smoke (`./scripts/run_t3_smoke.sh`) checks out Lang-1 FIXED, compiles, runs relevant tests, and runs stock `defects4j mutation -r`. It does not export a per-test kill map and does not compute coupling.
 
 Until then:
 

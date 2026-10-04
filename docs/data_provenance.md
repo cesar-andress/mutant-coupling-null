@@ -2,11 +2,10 @@
 
 This repository does **not** redistribute third-party benchmark data.
 
-Intended later sources (not cloned in this initialization):
+Pinned acquisition identity (clone is gitignored / built inside Docker):
 
-- Defects4J bugs, tests, and patches, under the upstream Defects4J license.
-- Mutants and kill information from a mutation tool (for example Major), under that tool's license.
+- Defects4J: https://github.com/rjust/defects4j.git tag `v3.0.1` commit `6d54320e0db5a357f9ab38a8e4d2e5aead7e1c09`
+- Major: 3.0.1 via upstream `init.sh` (`major-3.0.1_jre11.zip`)
+- Java: 11
 
-Record commit hashes, versions, and checksums here when acquisition is authorized. Until then, leave this file as a placeholder.
-
-Do not vendor clones into Git. See `external/` for acquisition notes.
+Third-party licenses remain upstream. See `env/pin.env` and `docs/environment.md`.

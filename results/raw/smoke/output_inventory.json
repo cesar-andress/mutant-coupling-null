@@ -1,0 +1,34 @@
+{
+  "work_root_csv": [
+    "covMap.csv",
+    "kill.csv",
+    "summary.csv",
+    "testMap.csv"
+  ],
+  "known_files": [
+    {
+      "filename": "summary.csv",
+      "bytes": 149
+    },
+    {
+      "filename": "kill.csv",
+      "bytes": 8176
+    },
+    {
+      "filename": "mutants.log",
+      "bytes": 136968
+    },
+    {
+      "filename": "testMap.csv",
+      "bytes": 235
+    },
+    {
+      "filename": "covMap.csv",
+      "bytes": 5759
+    },
+    {
+      "filename": ".mutation.log",
+      "bytes": 3217
+    }
+  ]
+}
