@@ -1,0 +1,17 @@
+{
+  "n_a": 162620,
+  "n_b": 162620,
+  "identical": 162620,
+  "missing_in_b": 0,
+  "missing_in_a": 0,
+  "cell_mismatch": 0,
+  "reason_mismatch_same_cell": 0,
+  "timeout_or_kill_reason_only": 0,
+  "details_head": [],
+  "n_mutants": 940,
+  "n_tests_a": 173,
+  "missing_route_b_files": [],
+  "extra_route_b_tests": [],
+  "extra_route_a_tests": [],
+  "method_level": true
+}

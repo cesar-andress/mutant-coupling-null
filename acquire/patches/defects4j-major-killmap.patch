@@ -1,0 +1,24 @@
+--- a/framework/projects/defects4j.build.xml	2026-10-05 00:13:34.113791220 +0200
++++ b/framework/projects/defects4j.build.xml	2026-10-05 00:13:34.113791220 +0200
+@@ -208,8 +208,8 @@
+ 
+         <fail message="Property major.kill.log not set!" unless="major.kill.log" />
+ 
+-        <!-- Sort test classes by run time, unless a single test method is run -->
+-        <condition property="major.sort" value="original" else="sort_classes">
++        <!-- Method-level maps unless a single test method is run (then keep original). -->
++        <condition property="major.sort" value="original" else="sort_methods">
+             <isset property="test.entry.method"/>
+         </condition>
+ 
+@@ -225,6 +225,10 @@
+             haltonfailure="true"
+             mutantDetailsFile="${major.kill.log}"
+             excludeMutantsFile="${major.exclude}"
++            exportKillMap="true"
++            killMapFile="killMap.csv"
++            covMapFile="covMap.csv"
++            testMapFile="testMap.csv"
+             >
+ 
+             <!--

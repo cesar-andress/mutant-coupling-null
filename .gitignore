@@ -70,11 +70,11 @@ results/raw/smoke/*
 !results/raw/smoke/output_inventory.json
 !results/raw/smoke/summary.csv
 !results/raw/smoke/versions.txt
-!results/raw/smoke/trigger_tests.txt
-!results/raw/smoke/modified_classes.txt
+results/raw/t4/
 results/derived/*
 !results/derived/.gitkeep
-
+!results/derived/t4/
+!results/derived/t4/**
 external/defects4j/
 external/major/
 external/src/
