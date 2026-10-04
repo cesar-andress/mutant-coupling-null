@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "mutant-coupling-null: a chance-corrected test of mutant-real-fault coupling"
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+authors:
+  - name: HUMAN_REQUIRED
+version: "0.0.0"
+license: MIT
+keywords:
+  - mutation testing
+  - mutant-real-fault coupling
+  - test adequacy
+  - construct validity
+  - chance-corrected coupling
+abstract: >-
+  Research artifact for a chance-corrected test of mutant-real-fault coupling.
+  The primary question is whether a fault-triggering test satisfies the
+  historical unique-kill coupling criterion more often than a coverage-matched
+  ordinary non-triggering test on the same kill matrices. No results are
+  archived in this initialization release. Author identity, ORCID,
+  affiliation, repository URL, and archival DOI are HUMAN_REQUIRED and are
+  not invented here.
