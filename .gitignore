@@ -89,6 +89,8 @@ results/derived/*
 !results/derived/mvp/**
 !results/derived/mvp_t9b/
 !results/derived/mvp_t9b/**
+!results/derived/full_study/
+!results/derived/full_study/**
 results/raw/t5/
 results/raw/t7_checkout/
 external/defects4j/
