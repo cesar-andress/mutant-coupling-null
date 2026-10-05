@@ -87,6 +87,8 @@ results/derived/*
 !results/derived/math_2_20/**
 !results/derived/mvp/
 !results/derived/mvp/**
+!results/derived/mvp_t9b/
+!results/derived/mvp_t9b/**
 results/raw/t5/
 results/raw/t7_checkout/
 external/defects4j/

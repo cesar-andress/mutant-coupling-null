@@ -1,6 +1,11 @@
 # Change log
 
+## 0.1.4 — 2026-10-05
+
+- T9b precision-extension derived tables (`results/derived/mvp_t9b/`). Original T9 `results/derived/mvp/` retained.
+
 ## 0.1.3 — 2026-10-05
+
 
 - T9 MVP analysis code and derived NO_GAIN excess-coupling outputs (not manuscript Results).
 - Frozen matching/bootstrap live in `src/mvp/`. Analysis lock remains in the private project tree.

@@ -8,7 +8,7 @@ authors:
     orcid: "https://orcid.org/0009-0001-8968-3404"
     email: cesar.andress@ucjc.edu
     affiliation: "CRIA-BDHS Research Group, Escuela Politécnica Superior de Tecnología y Ciencia, Universidad Camilo José Cela, Spain"
-version: "0.1.3"
+version: "0.1.4"
 license: MIT
 repository-code: "https://github.com/cesar-andress/mutant-coupling-null"
 url: "https://github.com/cesar-andress/mutant-coupling-null"
