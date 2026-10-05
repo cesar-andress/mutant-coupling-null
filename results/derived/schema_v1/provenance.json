@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "d4j_version": "3.0.1",
+  "d4j_sha": "6d54320e0db5a357f9ab38a8e4d2e5aead7e1c09",
+  "major_version": "3.0.1",
+  "git_commit": "422fbb4729c96a151af326fc783b516de456c88e",
+  "generated_at": "2026-10-05T01:04:27.242990+00:00",
+  "source_hashes": {
+    "testMap.csv": "d6497d96b6b0c3b49b60314fa6806b2d085ffc32f2bdde29039bc7ffd6f5ec9d",
+    "covMap.csv": "eeba3644840528d379c933f0882f5cc7a6c448c2f2747b387b3bdf0bfce49c06",
+    "killMap.csv": "5fe73579c77b12723f4d9b03a316f2480cd6de42c5b0f8df60758229ea0920e2",
+    "mutants.log": "9e08cb8f1c417c3d7b6abe9ad72b1d7bbc3cb7058c914c2413df6ad5a6d64cf3"
+  }
+}

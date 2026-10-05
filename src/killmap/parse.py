@@ -9,10 +9,6 @@ from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Optional, Tuple
 
-# Route A testMap uses Class[method]; Defects4J -t uses Class::method.
-BRACKET_TEST = re.compile(r"^(?P<cls>.+)\[(?P<meth>[^\]]+)\]$")
-
-
 class Cell(Enum):
     NOT_COVERED = "NOT_COVERED"
     SURVIVES = "SURVIVES"
@@ -44,9 +40,12 @@ class TestId:
 
 def parse_test_name(name: str) -> TestId:
     name = name.strip()
-    m = BRACKET_TEST.match(name)
-    if m:
-        return TestId(m.group("cls"), m.group("meth"))
+    # Major: Class[method] or Class[method[param]] (parameterized tests).
+    if "[" in name and name.endswith("]"):
+        cls, meth = name.split("[", 1)
+        meth = meth[:-1]
+        if cls and meth:
+            return TestId(cls, meth)
     if "::" in name:
         cls, meth = name.split("::", 1)
         return TestId(cls, meth)
