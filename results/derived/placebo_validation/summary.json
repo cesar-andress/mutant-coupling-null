@@ -1,0 +1,10 @@
+{
+  "n_rows": 637,
+  "triggers_never_eligible_placebo": true,
+  "event_eq_nunique_gt0": true,
+  "ENGINEERING_VALIDATION_ONLY": true,
+  "nogain_placebo_n": 571,
+  "nogain_placebo_event_rate": 0.04553415061295972,
+  "degenerate_always0": false,
+  "degenerate_always1": false
+}
