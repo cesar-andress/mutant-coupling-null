@@ -79,6 +79,12 @@ results/derived/*
 !results/derived/anchor/**
 !results/derived/schema_v1/
 !results/derived/schema_v1/**
+!results/derived/locality/
+!results/derived/locality/**
+!results/derived/placebo_validation/
+!results/derived/placebo_validation/**
+results/raw/t5/
+results/raw/t7_checkout/
 external/defects4j/
 external/major/
 external/src/

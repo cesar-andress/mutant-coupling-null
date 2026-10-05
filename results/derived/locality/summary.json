@@ -1,0 +1,13 @@
+{
+  "bugs": 58,
+  "mutants": 49342,
+  "with_method": 47110,
+  "counts": {
+    "MODIFIED_CLASS": 37766,
+    "ELSEWHERE": 5238,
+    "PATCH_METHOD": 5948,
+    "PATCH_LINE": 390
+  },
+  "method_level_coverage": 1.0,
+  "patch_method_or_line_rate": 0.143705786323236
+}
