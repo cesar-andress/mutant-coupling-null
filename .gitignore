@@ -83,6 +83,8 @@ results/derived/*
 !results/derived/locality/**
 !results/derived/placebo_validation/
 !results/derived/placebo_validation/**
+!results/derived/math_2_20/
+!results/derived/math_2_20/**
 results/raw/t5/
 results/raw/t7_checkout/
 external/defects4j/
