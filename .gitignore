@@ -75,6 +75,10 @@ results/derived/*
 !results/derived/.gitkeep
 !results/derived/t4/
 !results/derived/t4/**
+!results/derived/anchor/
+!results/derived/anchor/**
+!results/derived/schema_v1/
+!results/derived/schema_v1/**
 external/defects4j/
 external/major/
 external/src/

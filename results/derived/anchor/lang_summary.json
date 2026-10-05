@@ -1,0 +1,27 @@
+{
+  "n": 58,
+  "coupled": 54,
+  "rate": 0.9310344827586207,
+  "ci95_approx": [
+    0.8658204651222803,
+    0.996248500394961
+  ],
+  "gain_n": 38,
+  "gain_rate": 1.0,
+  "nogain_n": 20,
+  "nogain_rate": 0.8,
+  "exclusions": [
+    [
+      "Lang-42",
+      "no_anchor"
+    ],
+    [
+      "Lang-62",
+      "no_anchor"
+    ],
+    [
+      "Lang-64",
+      "no_anchor"
+    ]
+  ]
+}
