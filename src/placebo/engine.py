@@ -59,12 +59,26 @@ def build_events(
     locality: Optional[Dict[int, str]] = None,
 ) -> list:
     """Symmetric event: base = non-trigger tests; x removed from its own base."""
+    tests = list(tests)
     nontrigger = [t for t in tests if t not in triggers]
+    mutant_killers: Dict[int, Set[str]] = {}
+    mutant_coverers: Dict[int, Set[str]] = {}
+    for t in nontrigger:
+        for m in kills.get(t, set()):
+            mutant_killers.setdefault(m, set()).add(t)
+        for m in covers.get(t, set()):
+            mutant_coverers.setdefault(m, set()).add(t)
     rows = []
     for t in tests:
-        base = nontrigger  # triggers never in base
-        uniq = unique_kills(t, kills, base)
-        gain = coverage_gain(t, covers, base)
+        is_trig = t in triggers
+        killed = kills.get(t, set())
+        covered = covers.get(t, set())
+        if is_trig:
+            uniq = {m for m in killed if m not in mutant_killers}
+            gain = any(m not in mutant_coverers for m in covered)
+        else:
+            uniq = {m for m in killed if mutant_killers.get(m, set()) <= {t}}
+            gain = any(mutant_coverers.get(m, set()) <= {t} for m in covered)
         local_u = nonloc_u = 0
         if locality is not None:
             for m in uniq:
@@ -80,14 +94,14 @@ def build_events(
                 project=project,
                 bug_id=bug_id,
                 test_id=t,
-                is_trigger=t in triggers,
+                is_trigger=is_trig,
                 event=len(uniq) > 0,
                 n_unique_kills=len(uniq),
                 coverage_gain=gain,
-                n_mutants_covered=len(covers.get(t, set())),
+                n_mutants_covered=len(covered),
                 local_unique_kills=local_u,
                 nonlocal_unique_kills=nonloc_u,
-                eligible_for_primary_placebo=(t not in triggers),
+                eligible_for_primary_placebo=(not is_trig),
             )
         )
     return rows

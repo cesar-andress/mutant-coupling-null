@@ -1,6 +1,12 @@
 # Change log
 
+## 0.1.3 — 2026-10-05
+
+- T9 MVP analysis code and derived NO_GAIN excess-coupling outputs (not manuscript Results).
+- Frozen matching/bootstrap live in `src/mvp/`. Analysis lock remains in the private project tree.
+
 ## 0.1.2 — 2026-10-05
+
 
 - Parameterized Major test identities (`Class[method[i]]`) parse without collapsing distinct executions.
 - Reconstruct Math-3/Math-5 anchors from existing kill maps (no mutation rerun).

@@ -85,6 +85,8 @@ results/derived/*
 !results/derived/placebo_validation/**
 !results/derived/math_2_20/
 !results/derived/math_2_20/**
+!results/derived/mvp/
+!results/derived/mvp/**
 results/raw/t5/
 results/raw/t7_checkout/
 external/defects4j/
