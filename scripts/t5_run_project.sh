@@ -14,6 +14,7 @@ echo "n_active=${#BUGS[@]}" | tee "$OUT_BASE/${PID}_progress.txt"
 for bid in "${BUGS[@]}"; do
   echo "$(date -u +%FT%TZ) start $PID-$bid" | tee -a "$OUT_BASE/${PID}_progress.txt"
   set +e
+  # Pre-specified 1800s wall cap (docs/timeout_policy.md). Do not raise it ad hoc.
   timeout 1800 "$ROOT/scripts/t5_one_bug.sh" "$PID" "$bid" "$ROOT" "$OUT_BASE"
   rc=$?
   set -e

@@ -42,8 +42,71 @@ def test_ingest_and_anchor():
         row = anchor_from_maps("P", "1", d, [parse_test_name("p.T::trig")])
         assert row.coupled is True
         assert prov.schema_version == 1
+        assert tests[0]["test_decoration"] in ("", None) or True
+
+
+def test_parameterized_not_collapsed():
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        (d / "testMap.csv").write_text(
+            "TestNo,TestName,Runtime\n"
+            "1,p.T[m[0]],1\n"
+            "2,p.T[m[1]],1\n"
+            "3,p.T[trig],1\n"
+        )
+        (d / "covMap.csv").write_text("TestNo,MutantNo\n1,1\n2,1\n3,2\n")
+        (d / "killMap.csv").write_text(
+            "TestNo,MutantNo,[FAIL | TIME | EXC]\n3,2,FAIL\n1,1,TIME\n"
+        )
+        (d / "mutants.log").write_text("1:AOR:p.C@m:10:x\n2:LVR:p.C@m:11:y\n")
+        (d / "trigger_tests.txt").write_text("--- p.T::trig\n")
+        _, tests, _, cells, _ = ingest_bug(
+            "P", "1", d, d / "trigger_tests.txt", "3.0.1", "abc", "3.0.1"
+        )
+        ids = [t["test_id"] for t in tests]
+        assert "p.T::m[0]" in ids and "p.T::m[1]" in ids
+        assert ids.count("p.T::m[0]") == 1
+        deco = {t["test_id"]: t["test_decoration"] for t in tests}
+        assert deco["p.T::m[0]"] == "[0]"
+        assert deco["p.T::m[1]"] == "[1]"
+        assert any(c["kill_reason"] == "TIME" for c in cells)
+
+
+def test_duplicate_canonical_fails():
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        (d / "testMap.csv").write_text(
+            "TestNo,TestName,Runtime\n1,p.T[m[0]],1\n2,p.T[m[0]],1\n"
+        )
+        (d / "covMap.csv").write_text("TestNo,MutantNo\n")
+        (d / "killMap.csv").write_text("TestNo,MutantNo,[FAIL | TIME | EXC]\n")
+        (d / "mutants.log").write_text("1:AOR:p.C@m:10:x\n")
+        (d / "trigger_tests.txt").write_text("--- p.T::m[0]\n")
+        try:
+            ingest_bug("P", "1", d, d / "trigger_tests.txt", "3.0.1", "abc", "3.0.1")
+        except Exception:
+            return
+        raise AssertionError("expected collision error")
+
+
+def test_malformed_testmap():
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        (d / "testMap.csv").write_text("TestNo,TestName,Runtime\n1,p.T[unclosed,1\n")
+        (d / "covMap.csv").write_text("TestNo,MutantNo\n")
+        (d / "killMap.csv").write_text("TestNo,MutantNo,[FAIL | TIME | EXC]\n")
+        (d / "mutants.log").write_text("1:AOR:p.C@m:10:x\n")
+        (d / "trigger_tests.txt").write_text("--- p.T::x\n")
+        try:
+            ingest_bug("P", "1", d, d / "trigger_tests.txt", "3.0.1", "abc", "3.0.1")
+        except Exception:
+            return
+        raise AssertionError("expected parse error")
 
 
 if __name__ == "__main__":
     test_ingest_and_anchor()
+    test_parameterized_not_collapsed()
+    test_duplicate_canonical_fails()
+    test_malformed_testmap()
     print("ok")

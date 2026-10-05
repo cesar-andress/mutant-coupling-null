@@ -37,7 +37,9 @@ def main() -> int:
     for name in bugs:
         d = root / "results" / "raw" / "t5" / name
         project, bid = name.split("-", 1)
-        trig = root / "external" / "defects4j" / "framework" / "projects" / project / "trigger_tests" / bid
+        trig = d / "trigger_tests.txt"
+        if not trig.is_file():
+            trig = root / "external" / "defects4j" / "framework" / "projects" / project / "trigger_tests" / bid
         tests, triggers, covers, kills = maps_to_dicts(d, trig)
         loc = {}
         loc_path = root / "results" / "derived" / "locality" / "mutant_locality.jsonl"

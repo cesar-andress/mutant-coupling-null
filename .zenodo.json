@@ -1,6 +1,6 @@
 {
   "title": "mutant-coupling-null: a chance-corrected test of mutant-real-fault coupling",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "upload_type": "software",
   "access_right": "open",
   "license": "MIT",

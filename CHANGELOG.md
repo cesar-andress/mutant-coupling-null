@@ -1,6 +1,13 @@
 # Change log
 
+## 0.1.2 — 2026-10-05
+
+- Parameterized Major test identities (`Class[method[i]]`) parse without collapsing distinct executions.
+- Reconstruct Math-3/Math-5 anchors from existing kill maps (no mutation rerun).
+- Explicit 1800s timeout policy; Math incomplete jobs classified, not retried.
+
 ## 0.1.1 — 2026-10-05
+
 
 - Record author identity as César Andrés (ORCID 0009-0001-8968-3404).
 - Fill Zenodo/GitHub citation metadata. No DOI assigned yet.

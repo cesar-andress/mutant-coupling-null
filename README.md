@@ -60,7 +60,7 @@ Machine-readable metadata: `CITATION.cff` and `.zenodo.json`.
 
 ## Cite this artifact
 
-Until Zenodo assigns a DOI, cite the GitHub repository and the version in `CITATION.cff` (currently 0.1.1). Do not invent a DOI.
+Until Zenodo assigns a DOI, cite the GitHub repository and the version in `CITATION.cff` (currently 0.1.2). Do not invent a DOI.
 
 ## Zenodo
 

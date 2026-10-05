@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import csv
 import json
 import sys
 from dataclasses import asdict
@@ -12,7 +11,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 sys.path.insert(0, "/opt/artifact/src")
 
-from coupling.anchor import AnchorRow, anchor_from_maps, load_trigger_ids  # noqa: E402
+from coupling.anchor import (  # noqa: E402
+    attach_provenance,
+    anchor_from_maps,
+    load_trigger_ids,
+    validate_anchor,
+)
+
+
+def load_pin(root: Path) -> dict:
+    pin = {}
+    p = root / "env" / "pin.env"
+    if p.is_file():
+        for line in p.read_text().splitlines():
+            if "=" in line and not line.startswith("#"):
+                k, v = line.split("=", 1)
+                pin[k] = v
+    return pin
 
 
 def triggers_from_d4j_file(path: Path) -> list:
@@ -36,7 +51,13 @@ def main() -> int:
             trig = triggers_from_d4j_file(tpath)
     else:
         trig = triggers_from_d4j_file(tpath)
+    existed = Path(out).is_file()
     row = anchor_from_maps(project, bid, a_dir, trig)
+    pin = load_pin(Path(__file__).resolve().parents[1])
+    attach_provenance(row, pin, reconstruction_from_raw=not existed)
+    problems = validate_anchor(asdict(row), require_provenance=True)
+    if problems:
+        raise SystemExit("invalid anchor.json: " + "; ".join(problems))
     Path(out).write_text(json.dumps(asdict(row), indent=2) + "\n")
     print(json.dumps(asdict(row)))
     return 0 if row.exclusion_reason is None else 2

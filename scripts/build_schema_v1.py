@@ -28,9 +28,10 @@ def main() -> int:
         if not (d / "killMap.csv").is_file():
             continue
         project, bid = d.name.split("-", 1)
-        trig = root / "external" / "defects4j" / "framework" / "projects" / project / "trigger_tests" / bid
+        trig = d / "trigger_tests.txt"
         if not trig.is_file():
-            # inside container path
+            trig = root / "external" / "defects4j" / "framework" / "projects" / project / "trigger_tests" / bid
+        if not trig.is_file():
             trig = Path(f"/opt/defects4j/framework/projects/{project}/trigger_tests/{bid}")
         commit_row = None
         cdb = root / "external" / "defects4j" / "framework" / "projects" / project / "commit-db"

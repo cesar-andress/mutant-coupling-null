@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 import csv
-import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Dict, Iterable, Optional, Tuple
@@ -26,34 +25,140 @@ class KillReason(Enum):
 
 @dataclass(frozen=True)
 class TestId:
+    """Canonical test execution identity.
+
+    ``method`` is the JUnit method name without parameter/index decoration.
+    ``decoration`` retains every trailing ``[...]`` group (e.g. ``[2]`` or
+    ``[0][foo]``). Distinct decorations are distinct executions.
+
+    ``raw`` is the source string and is not part of equality.
+    """
+
     class_name: str
     method: str
+    decoration: str = ""
+    raw: str = field(default="", compare=False, hash=False)
+    __test__ = False
+
+    @property
+    def canonical(self) -> str:
+        if self.method == "":
+            return self.class_name
+        return f"{self.class_name}::{self.method}{self.decoration}"
 
     @property
     def d4j(self) -> str:
-        return f"{self.class_name}::{self.method}"
+        return self.canonical
 
     @property
     def major(self) -> str:
-        return f"{self.class_name}[{self.method}]"
+        if self.method == "":
+            return self.class_name
+        return f"{self.class_name}[{self.method}{self.decoration}]"
+
+
+class CanonicalIdCollisionError(ValueError):
+    pass
+
+
+def _split_outer_brackets(s: str) -> Tuple[str, str]:
+    """Split ``prefix[body]`` where ``body`` is bracket-balanced.
+
+    The first ``[`` opens the outer pair; its matching ``]`` must be the
+    last character of ``s``.
+    """
+    open_at = s.find("[")
+    if open_at < 0:
+        raise ValueError(f"no opening bracket: {s!r}")
+    depth = 0
+    close_at = None
+    for i, ch in enumerate(s[open_at:], start=open_at):
+        if ch == "[":
+            depth += 1
+        elif ch == "]":
+            depth -= 1
+            if depth < 0:
+                raise ValueError(f"unbalanced brackets: {s!r}")
+            if depth == 0:
+                close_at = i
+                break
+    if depth != 0 or close_at is None:
+        raise ValueError(f"unbalanced brackets: {s!r}")
+    if close_at != len(s) - 1:
+        raise ValueError(f"trailing characters after bracket group: {s!r}")
+    prefix = s[:open_at]
+    body = s[open_at + 1 : close_at]
+    return prefix, body
+
+
+def _method_and_decoration(rest: str) -> Tuple[str, str]:
+    """Split ``method`` or ``method[index][…]`` without dropping decoration."""
+    if rest == "":
+        return "", ""
+    if rest.startswith("["):
+        raise ValueError(f"empty method name: {rest!r}")
+    first_open = rest.find("[")
+    if first_open < 0:
+        return rest, ""
+    method = rest[:first_open]
+    decoration = rest[first_open:]
+    if method == "":
+        raise ValueError(f"empty method name: {rest!r}")
+    if not _brackets_balanced(decoration) or not decoration.startswith("["):
+        raise ValueError(f"unbalanced decoration: {decoration!r}")
+    return method, decoration
+
+
+def _brackets_balanced(s: str) -> bool:
+    depth = 0
+    for ch in s:
+        if ch == "[":
+            depth += 1
+        elif ch == "]":
+            depth -= 1
+            if depth < 0:
+                return False
+    return depth == 0
 
 
 def parse_test_name(name: str) -> TestId:
-    name = name.strip()
-    # Major: Class[method] or Class[method[param]] (parameterized tests).
-    if "[" in name and name.endswith("]"):
-        cls, meth = name.split("[", 1)
-        meth = meth[:-1]
-        if cls and meth:
-            return TestId(cls, meth)
-    if "::" in name:
-        cls, meth = name.split("::", 1)
-        return TestId(cls, meth)
-    raise ValueError(f"unrecognized test identity: {name!r}")
+    """Parse Major ``Class[method]`` / ``Class[method[i]]`` or Defects4J ``Class::method``.
+
+    Grammar:
+    - ``CLASS`` — class-only identity (no method)
+    - ``CLASS::METHOD``
+    - ``CLASS::METHOD DECORATION*`` where each decoration is a balanced ``[…]``
+    - ``CLASS[METHOD]``
+    - ``CLASS[METHOD DECORATION+]``
+    """
+    raw = name.strip()
+    if not raw:
+        raise ValueError("empty test identity")
+    if "::" in raw:
+        cls, rest = raw.split("::", 1)
+        if not cls:
+            raise ValueError(f"empty class name: {name!r}")
+        method, decoration = _method_and_decoration(rest)
+        if method == "":
+            raise ValueError(f"empty method name: {name!r}")
+        return TestId(cls, method, decoration, raw)
+    if "[" in raw:
+        cls, inner = _split_outer_brackets(raw)
+        if not cls:
+            raise ValueError(f"empty class name: {name!r}")
+        if inner == "":
+            raise ValueError(f"empty method name: {name!r}")
+        method, decoration = _method_and_decoration(inner)
+        return TestId(cls, method, decoration, raw)
+    # Class-only (no method segment).
+    if raw.endswith(".") or " " in raw:
+        raise ValueError(f"unrecognized test identity: {name!r}")
+    return TestId(class_name=raw, method="", decoration="", raw=raw)
 
 
 def load_test_map(path: Path) -> Dict[int, TestId]:
     out: Dict[int, TestId] = {}
+    seen_canonical: Dict[str, int] = {}
     with path.open(newline="", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
         if "TestNo" not in (reader.fieldnames or []) or "TestName" not in (reader.fieldnames or []):
@@ -62,7 +167,14 @@ def load_test_map(path: Path) -> Dict[int, TestId]:
             tid = int(row["TestNo"])
             if tid in out:
                 raise ValueError(f"duplicate TestNo {tid}")
-            out[tid] = parse_test_name(row["TestName"])
+            parsed = parse_test_name(row["TestName"])
+            prev = seen_canonical.get(parsed.canonical)
+            if prev is not None:
+                raise CanonicalIdCollisionError(
+                    f"canonical test id {parsed.canonical!r} collides for TestNo {prev} and {tid}"
+                )
+            seen_canonical[parsed.canonical] = tid
+            out[tid] = parsed
     return out
 
 

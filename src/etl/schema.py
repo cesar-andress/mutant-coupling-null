@@ -21,6 +21,8 @@ TESTS_COLUMNS = [
     "test_id",
     "test_class",
     "test_method",
+    "test_decoration",
+    "test_id_raw",
     "is_trigger",
     "stable",
     "n_mutants_covered",

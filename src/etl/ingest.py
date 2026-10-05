@@ -103,12 +103,16 @@ def ingest_bug(
     nontrigger_nos = [n for n, tid in tmap.items() if tid not in triggers]
 
     tests = []
+    seen_test_ids = set()
     for tno, tid in tmap.items():
         cov = covered[tno]
         others = [n for n in nontrigger_nos if n != tno]
         base_excl: Set[int] = set()
         for o in others:
             base_excl |= covered[o]
+        if tid.d4j in seen_test_ids:
+            raise ValueError(f"canonical test_id collision {tid.d4j}")
+        seen_test_ids.add(tid.d4j)
         tests.append(
             {
                 "project": project,
@@ -116,6 +120,8 @@ def ingest_bug(
                 "test_id": tid.d4j,
                 "test_class": tid.class_name,
                 "test_method": tid.method,
+                "test_decoration": tid.decoration,
+                "test_id_raw": tid.raw,
                 "is_trigger": tid in triggers,
                 "stable": True,
                 "n_mutants_covered": len(cov),
