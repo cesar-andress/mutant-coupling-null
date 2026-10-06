@@ -1,0 +1,526 @@
+{
+  "reproducibility": "EXACT",
+  "compare_flags": {
+    "excess": true,
+    "r_trigger": true,
+    "r_placebo": true,
+    "n_primary": true,
+    "ci_lo": true,
+    "ci_hi": true,
+    "rr": true,
+    "af": true
+  },
+  "n_manifest": 854,
+  "status_counts": {
+    "COMPLETE_VALID": 491,
+    "MUTATION_FAILURE": 266,
+    "TIMEOUT": 93,
+    "BUILD_FAILURE": 4
+  },
+  "n_parse_fail": 10,
+  "parse_fail_ids": [
+    "Compress-11",
+    "Compress-12",
+    "Chart-26",
+    "Compress-20",
+    "Compress-25",
+    "Compress-18",
+    "Compress-16",
+    "Compress-9",
+    "Compress-29",
+    "Compress-28"
+  ],
+  "n_ingested": 481,
+  "n_primary": 288,
+  "n_nogain_trigger": 304,
+  "r_trigger": 0.6493827160493827,
+  "r_placebo": 0.2266392522911936,
+  "excess": 0.4227434637581891,
+  "ci95": [
+    0.3624604432266677,
+    0.48129122021336346
+  ],
+  "halfwidth": 0.059415388493347876,
+  "risk_ratio": 2.8652702896100024,
+  "attributable_fraction": 0.6509927863956904,
+  "alt_seed_ci": [
+    0.3646240857098225,
+    0.483677994410361
+  ],
+  "alt_seed_mean": 0.4227434637581891,
+  "B20000_ci": [
+    0.3634652839789651,
+    0.481573823414955
+  ],
+  "bootstrap_ci_shift_l1": 0.00455041668015238,
+  "bootstrap_stable": true,
+  "gain_n": 153,
+  "gain_excess": 0.02163087457205104,
+  "gain_ci": [
+    -0.004940865234982884,
+    0.050536881419234354
+  ],
+  "lopo": [
+    {
+      "project": "Chart",
+      "n_left": 277,
+      "excess": 0.4244826397742294,
+      "ci95": [
+        0.3625778809448786,
+        0.4838299469397736
+      ],
+      "delta_from_full": 0.0017391760160402892
+    },
+    {
+      "project": "Cli",
+      "n_left": 278,
+      "excess": 0.4362173584286567,
+      "ci95": [
+        0.3756792287452297,
+        0.49493132136698553
+      ],
+      "delta_from_full": 0.013473894670467612
+    },
+    {
+      "project": "Closure",
+      "n_left": 262,
+      "excess": 0.40237251551863523,
+      "ci95": [
+        0.33804006555272686,
+        0.4628580272220456
+      ],
+      "delta_from_full": -0.020370948239553877
+    },
+    {
+      "project": "Codec",
+      "n_left": 274,
+      "excess": 0.4223429952250595,
+      "ci95": [
+        0.36065705118761426,
+        0.48295791483882794
+      ],
+      "delta_from_full": -0.0004004685331295832
+    },
+    {
+      "project": "Collections",
+      "n_left": 269,
+      "excess": 0.42277418305998554,
+      "ci95": [
+        0.3606032378937074,
+        0.4848362416236059
+      ],
+      "delta_from_full": 3.071930179643356e-05
+    },
+    {
+      "project": "Compress",
+      "n_left": 271,
+      "excess": 0.4141741049810035,
+      "ci95": [
+        0.35198935596777986,
+        0.47577967407300187
+      ],
+      "delta_from_full": -0.00856935877718562
+    },
+    {
+      "project": "Csv",
+      "n_left": 272,
+      "excess": 0.41611372485801784,
+      "ci95": [
+        0.3544413967329162,
+        0.47769712488457494
+      ],
+      "delta_from_full": -0.006629738900171267
+    },
+    {
+      "project": "Gson",
+      "n_left": 278,
+      "excess": 0.4196705476838939,
+      "ci95": [
+        0.35867609683974,
+        0.4809061828188461
+      ],
+      "delta_from_full": -0.0030729160742952177
+    },
+    {
+      "project": "JacksonCore",
+      "n_left": 276,
+      "excess": 0.4322791526586487,
+      "ci95": [
+        0.37157951402197575,
+        0.4915193974580991
+      ],
+      "delta_from_full": 0.009535688900459582
+    },
+    {
+      "project": "JacksonDatabind",
+      "n_left": 282,
+      "excess": 0.41755360837715777,
+      "ci95": [
+        0.3567938715140249,
+        0.47889860894809577
+      ],
+      "delta_from_full": -0.005189855381031339
+    },
+    {
+      "project": "JacksonXml",
+      "n_left": 285,
+      "excess": 0.42048058922314024,
+      "ci95": [
+        0.3608447399303283,
+        0.48083342065963347
+      ],
+      "delta_from_full": -0.0022628745350488644
+    },
+    {
+      "project": "Jsoup",
+      "n_left": 248,
+      "excess": 0.4057625488451856,
+      "ci95": [
+        0.34215641185276546,
+        0.47007522830315085
+      ],
+      "delta_from_full": -0.01698091491300352
+    },
+    {
+      "project": "JxPath",
+      "n_left": 274,
+      "excess": 0.41887867699096615,
+      "ci95": [
+        0.3569902557118662,
+        0.48097108572848135
+      ],
+      "delta_from_full": -0.0038647867672229608
+    },
+    {
+      "project": "Lang",
+      "n_left": 271,
+      "excess": 0.4228678185771947,
+      "ci95": [
+        0.36055663927388854,
+        0.48517941720867097
+      ],
+      "delta_from_full": 0.00012435481900557877
+    },
+    {
+      "project": "Math",
+      "n_left": 234,
+      "excess": 0.4636048913244798,
+      "ci95": [
+        0.3988204099866303,
+        0.5277947175330633
+      ],
+      "delta_from_full": 0.04086142756629069
+    },
+    {
+      "project": "Mockito",
+      "n_left": 279,
+      "excess": 0.42381895316390267,
+      "ci95": [
+        0.36247156320984697,
+        0.4838996981885113
+      ],
+      "delta_from_full": 0.0010754894057135589
+    },
+    {
+      "project": "Time",
+      "n_left": 278,
+      "excess": 0.4264934845256088,
+      "ci95": [
+        0.36441823971537785,
+        0.48617367816242435
+      ],
+      "delta_from_full": 0.003750020767419704
+    }
+  ],
+  "max_lopo": {
+    "project": "Math",
+    "n_left": 234,
+    "excess": 0.4636048913244798,
+    "ci95": [
+      0.3988204099866303,
+      0.5277947175330633
+    ],
+    "delta_from_full": 0.04086142756629069
+  },
+  "max_bug_influence": {
+    "abs_delta": 0.004957294298809034,
+    "delta": 0.004957294298809034,
+    "project": "Lang",
+    "bug_id": "40"
+  },
+  "top_bug_influence": [
+    {
+      "abs_delta": 0.004957294298809034,
+      "delta": 0.004957294298809034,
+      "project": "Lang",
+      "bug_id": "40"
+    },
+    {
+      "abs_delta": 0.004957294298809034,
+      "delta": 0.004957294298809034,
+      "project": "Jsoup",
+      "bug_id": "88"
+    },
+    {
+      "abs_delta": 0.004957294298809034,
+      "delta": 0.004957294298809034,
+      "project": "JacksonCore",
+      "bug_id": "5"
+    },
+    {
+      "abs_delta": 0.004957294298809034,
+      "delta": 0.004957294298809034,
+      "project": "Closure",
+      "bug_id": "124"
+    },
+    {
+      "abs_delta": 0.004183000841588735,
+      "delta": 0.004183000841588735,
+      "project": "Cli",
+      "bug_id": "31"
+    },
+    {
+      "abs_delta": 0.0032151340200634038,
+      "delta": 0.0032151340200634038,
+      "project": "Mockito",
+      "bug_id": "31"
+    },
+    {
+      "abs_delta": 0.0032151340200634038,
+      "delta": 0.0032151340200634038,
+      "project": "Math",
+      "bug_id": "70"
+    },
+    {
+      "abs_delta": 0.0032151340200634038,
+      "delta": 0.0032151340200634038,
+      "project": "Math",
+      "bug_id": "64"
+    },
+    {
+      "abs_delta": 0.0032151340200634038,
+      "delta": 0.0032151340200634038,
+      "project": "Math",
+      "bug_id": "34"
+    },
+    {
+      "abs_delta": 0.0032151340200634038,
+      "delta": 0.0032151340200634038,
+      "project": "Math",
+      "bug_id": "2"
+    }
+  ],
+  "canonical_test_dups_parquet": 0,
+  "canonical_mutant_dups_parquet": 0,
+  "mutant_dup_raw": 0,
+  "traces": [
+    {
+      "project": "JacksonDatabind",
+      "bug_id": "49",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Math",
+      "bug_id": "36",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "JacksonCore",
+      "bug_id": "15",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Collections",
+      "bug_id": "5",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "JxPath",
+      "bug_id": "10",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "5",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Jsoup",
+      "bug_id": "75",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Jsoup",
+      "bug_id": "85",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "JxPath",
+      "bug_id": "17",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "13",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Lang",
+      "bug_id": "28",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Lang",
+      "bug_id": "38",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Codec",
+      "bug_id": "6",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Math",
+      "bug_id": "27",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Jsoup",
+      "bug_id": "73",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "36",
+      "ok": true,
+      "detail": "reconstructed"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "20",
+      "ok": true,
+      "detail": "parser_collision:canonical test id 'org.apache.commons.compress.archivers.LongPathTest::testArchi"
+    },
+    {
+      "project": "Chart",
+      "bug_id": "26",
+      "ok": true,
+      "detail": "parser_collision:canonical test id 'org.jfree.chart.axis.junit.CategoryAxisTests::testCloning' co"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "9",
+      "ok": true,
+      "detail": "parser_collision:canonical test id 'org.apache.commons.compress.archivers.LongPathTest::testArchi"
+    },
+    {
+      "project": "Compress",
+      "bug_id": "11",
+      "ok": true,
+      "detail": "parser_collision:canonical test id 'org.apache.commons.compress.archivers.LongPathTest::testArchi"
+    }
+  ],
+  "n_trace": 20,
+  "n_trace_pass": 20,
+  "loc_n": 17,
+  "loc_excess": 0.5192846369316957,
+  "loc_ci": [
+    0.3021978021978022,
+    0.73109243697479
+  ],
+  "nloc_excess": -0.010288241170594086,
+  "nloc_ci": [
+    -0.2303921568627451,
+    0.2192253824606766
+  ],
+  "missing_n": 373,
+  "extreme_bound_0": 0.18419079812762248,
+  "extreme_bound_1": 0.7484873185512231,
+  "fail_by_project": {
+    "JacksonDatabind": {
+      "MUTATION_FAILURE": 98,
+      "COMPLETE_VALID": 12
+    },
+    "Collections": {
+      "COMPLETE_VALID": 28
+    },
+    "Jsoup": {
+      "COMPLETE_VALID": 66,
+      "MUTATION_FAILURE": 12,
+      "TIMEOUT": 15
+    },
+    "Compress": {
+      "MUTATION_FAILURE": 3,
+      "COMPLETE_VALID": 44
+    },
+    "Lang": {
+      "COMPLETE_VALID": 58,
+      "MUTATION_FAILURE": 3
+    },
+    "JacksonCore": {
+      "COMPLETE_VALID": 22,
+      "TIMEOUT": 4
+    },
+    "Closure": {
+      "MUTATION_FAILURE": 93,
+      "TIMEOUT": 40,
+      "COMPLETE_VALID": 41
+    },
+    "Csv": {
+      "COMPLETE_VALID": 16
+    },
+    "Cli": {
+      "MUTATION_FAILURE": 25,
+      "COMPLETE_VALID": 14
+    },
+    "Mockito": {
+      "MUTATION_FAILURE": 23,
+      "COMPLETE_VALID": 10,
+      "BUILD_FAILURE": 4,
+      "TIMEOUT": 1
+    },
+    "Math": {
+      "COMPLETE_VALID": 88,
+      "TIMEOUT": 18
+    },
+    "Time": {
+      "TIMEOUT": 8,
+      "COMPLETE_VALID": 13,
+      "MUTATION_FAILURE": 5
+    },
+    "Chart": {
+      "COMPLETE_VALID": 21,
+      "TIMEOUT": 4,
+      "MUTATION_FAILURE": 1
+    },
+    "Codec": {
+      "COMPLETE_VALID": 18
+    },
+    "Gson": {
+      "COMPLETE_VALID": 12,
+      "TIMEOUT": 3,
+      "MUTATION_FAILURE": 3
+    },
+    "JacksonXml": {
+      "COMPLETE_VALID": 6
+    },
+    "JxPath": {
+      "COMPLETE_VALID": 22
+    }
+  }
+}

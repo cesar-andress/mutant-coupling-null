@@ -11,11 +11,25 @@ The primary estimand is **excess coupling**: the coupling rate among fault-trigg
 ## Status
 
 - Local overlap gate: PASS
-- Global novelty / scoop gate: PARTIAL (scientifically distinct; see the parent project audit)
-- Environment smoke (T3): pinned Defects4J 3.0.1 / Java 11 / Major 3.0.1
-- MVP: NOT STARTED
-- Full study: NOT AUTHORIZED
-- Anchor reproduction: NOT claimed (stock mutation only; no kill map)
+- Global novelty / scoop gate: PARTIAL (scientifically distinct)
+- Environment: pinned Defects4J 3.0.1 / Java 11 / Major 3.0.1
+- MVP (T9/T9b): complete (see `results/derived/mvp/` and `mvp_t9b/`)
+- Full study: **analysis tables generated** under `results/derived/full_study/`
+- The LaTeX manuscript is **not** in this repository; Results prose is not claimed here
+
+Independent recompute of the locked primary analysis:
+
+```
+python3.10 scripts/audit_full_study.py .
+python3.10 scripts/run_full_study_analysis.py .
+```
+
+These commands need local Route A maps under `results/raw/t5/` (gitignored; bulky). Derived parquet/CSV/JSON in `results/derived/full_study/` are tracked.
+
+Expected analysis wall time: minutes, not hours, once maps exist.
+
+Full mutation acquisition is a multi-hour Docker campaign (`scripts/full_study_campaign.py`) and is not required to regenerate tables from already-ingested maps.
+
 
 ## Reproduce the environment smoke
 
