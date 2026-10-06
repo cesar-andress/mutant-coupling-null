@@ -1,0 +1,13 @@
+{
+  "bugs": 481,
+  "tests": 120160,
+  "mutants": 208030,
+  "cells": 3868408,
+  "canonical_test_id_collisions": 10,
+  "mutant_id_collisions": 0,
+  "schema_version": 1,
+  "d4j_version": "3.0.1",
+  "d4j_sha": "6d54320e0db5a357f9ab38a8e4d2e5aead7e1c09",
+  "major_version": "3.0.1",
+  "git_commit": "3a7a52d4097688aba712efbbb11b9b0f273fa016"
+}

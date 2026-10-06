@@ -1,0 +1,2 @@
+status,n_bugs_with_dates,n_trigger_obs_with_dates,note
+NOT_ESTIMABLE,0,0,no validated test chronology in SCHEMA_V1 timestamp fields

@@ -1,0 +1,121 @@
+{
+  "lock_git": "75ad2fa3103103046e7a9241560496b95be6d078",
+  "generated_at": "2026-10-06T15:31:16.629173+00:00",
+  "bootstrap": {
+    "method": "percentile",
+    "B": 10000,
+    "seed": 20261005,
+    "unit": "bug"
+  },
+  "n_active": 854,
+  "n_attempted": 854,
+  "n_valid_maps_on_disk": 491,
+  "n_valid": 481,
+  "n_parser_excluded_from_canonical": 10,
+  "completion_rate": 0.563231850117096,
+  "timeouts": 93,
+  "build_failures": 4,
+  "mutation_failures": 266,
+  "parser_failures": 10,
+  "other_failures": 0,
+  "canonical_test_id_collisions": 10,
+  "mutant_id_collisions": 0,
+  "n_nogain_trigger_bugs": 304,
+  "n_primary_matched": 288,
+  "unmatched_nogain_trigger_bugs": 16,
+  "r_trigger": 0.6493827160493827,
+  "r_placebo": 0.2266392522911936,
+  "excess": 0.4227434637581891,
+  "ci95": [
+    0.3624604432266677,
+    0.48129122021336346
+  ],
+  "ci_halfwidth": 0.059415388493347876,
+  "precision_target_0p070": "PASS",
+  "risk_ratio": 2.8652702896100024,
+  "attributable_fraction": 0.6509927863956904,
+  "common_support": "ADEQUATE",
+  "gain": {
+    "n": 153,
+    "excess": 0.02163087457205104,
+    "ci95": [
+      -0.004940865234982884,
+      0.050536881419234354
+    ],
+    "r_trigger": 0.9901960784313726,
+    "r_placebo": 0.9685652038593214
+  },
+  "locality_mapping_coverage": 0.2649192227776197,
+  "rq2_local": {
+    "n": 17,
+    "excess": 0.5192846369316957,
+    "ci95": [
+      0.3021978021978022,
+      0.73109243697479
+    ]
+  },
+  "rq2_nonlocal": {
+    "n": 17,
+    "excess": -0.010288241170594086,
+    "ci95": [
+      -0.2303921568627451,
+      0.2192253824606766
+    ]
+  },
+  "rq3_provenance_coverage": 0.0,
+  "rq3_support_gate": "FAIL",
+  "rq3_status": "SUPPLEMENTARY",
+  "recency": "NOT_ESTIMABLE",
+  "kill_reason_no_time": {
+    "n": 288,
+    "excess": 0.44417671289222566,
+    "ci95": [
+      0.3839273590294858,
+      0.5043237875037052
+    ]
+  },
+  "kill_reason_fail_only": {
+    "n": 288,
+    "excess": 0.3003948338875234,
+    "ci95": [
+      0.24129652545098804,
+      0.35806947830118535
+    ]
+  },
+  "wall_median_sec": 77.19,
+  "wall_p75_sec": 349.73,
+  "wall_p90_sec": 775.38,
+  "cpu_hours": 33.14694444444446,
+  "missingness_bounds": {
+    "label": "BOUNDS / SENSITIVITY",
+    "missing_attempted_invalid": 373,
+    "if_missing_excess_0": 0.18419079812762248,
+    "if_missing_excess_1": 0.7484873185512231,
+    "note": "Not an estimate. Extreme assignment of unobserved excess."
+  },
+  "projects": [
+    "Chart",
+    "Cli",
+    "Closure",
+    "Codec",
+    "Collections",
+    "Compress",
+    "Csv",
+    "Gson",
+    "JacksonCore",
+    "JacksonDatabind",
+    "JacksonXml",
+    "Jsoup",
+    "JxPath",
+    "Lang",
+    "Math",
+    "Mockito",
+    "Time"
+  ],
+  "status_counts": {
+    "MUTATION_FAILURE": 266,
+    "COMPLETE_VALID": 491,
+    "TIMEOUT": 93,
+    "BUILD_FAILURE": 4
+  }
+}

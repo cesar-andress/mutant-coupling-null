@@ -1,0 +1,17 @@
+{
+  "lock_git": "75ad2fa3103103046e7a9241560496b95be6d078",
+  "generated_at": "2026-10-06T15:31:16.629173+00:00",
+  "event": "T9 unique-kill vs ordinary non-trigger base",
+  "matching": "T9 exposure bins + same-class preference",
+  "bootstrap": {
+    "method": "percentile",
+    "B": 10000,
+    "seed": 20261005,
+    "unit": "bug"
+  },
+  "primary_stratum": "NO_GAIN",
+  "inferential_unit": "bug",
+  "d4j": "3.0.1 / 6d54320e0db5a357f9ab38a8e4d2e5aead7e1c09",
+  "etl_schema": 1,
+  "parser_collisions_excluded": 10
+}

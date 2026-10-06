@@ -1,0 +1,1 @@
+2026-10-05T19:20:00Z engineering: host timeout envelope + kill-after; restarted campaign after RUNNING reset; no outcome-based selection
