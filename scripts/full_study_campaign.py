@@ -110,10 +110,17 @@ def run_one(root: Path, project: str, bid: str) -> dict:
     out.mkdir(parents=True, exist_ok=True)
     start = time.time()
     start_iso = utcnow()
-    cmd = [
+    # Host envelope slightly above scientific 1800s so GNU timeout inside the
+    # container remains authoritative; host kill-after prevents orphan Java.
+    host_cap = TIMEOUT_SEC + 60
+    cname = f"mcn-full-{project}-{bid}"
+    subprocess.run(["docker", "rm", "-f", cname], check=False, capture_output=True)
+    docker_cmd = [
         "docker",
         "run",
         "--rm",
+        "--name",
+        cname,
         "--network",
         "none",
         "-e",
@@ -126,13 +133,15 @@ def run_one(root: Path, project: str, bid: str) -> dict:
         "bash",
         "-lc",
         (
-            "timeout %d /opt/artifact/scripts/t5_one_bug.sh %s %s /opt/artifact "
+            "timeout --kill-after=30 %d /opt/artifact/scripts/t5_one_bug.sh %s %s /opt/artifact "
             "/opt/artifact/results/raw/t5; echo $? > /opt/artifact/results/raw/t5/%s-%s/campaign.exit"
             % (TIMEOUT_SEC, project, bid, project, bid)
         ),
     ]
+    cmd = ["timeout", "--kill-after=60", str(host_cap), *docker_cmd]
     proc = subprocess.run(cmd, capture_output=True, text=True)
     end = time.time()
+    subprocess.run(["docker", "rm", "-f", cname], check=False, capture_output=True)
     camp = out / "campaign.exit"
     if camp.is_file():
         try:
@@ -141,10 +150,15 @@ def run_one(root: Path, project: str, bid: str) -> dict:
             rc = proc.returncode
     else:
         rc = proc.returncode
-    if rc == 124:
+    # Container timeout (124) or host envelope kill → scientific TIMEOUT.
+    # Do not discard COMPLETE_VALID solely because wall ≈ 1800.
+    wall = end - start
+    maps_ok = all((out / n).is_file() for n in MAPS)
+    if rc == 124 or (wall >= (TIMEOUT_SEC + 55) and not maps_ok):
         (out / "exclusion.txt").write_text("timeout\n")
         status = "TIMEOUT"
         reason = "timeout"
+        rc = 124
     else:
         status = classify_dir(out)
         reason = "" if status == "COMPLETE_VALID" else status
@@ -256,6 +270,11 @@ def main() -> int:
         manifest = list(csv.DictReader(fh))
     state = load_state(state_path)
     seed_existing(root, manifest, state)
+    raw = root / "results" / "raw" / "t5"
+    for key, rec in list(state.items()):
+        if rec.get("status") == "RUNNING":
+            st = classify_dir(raw / f"{key[0]}-{key[1]}")
+            rec["status"] = st if st == "COMPLETE_VALID" else "PENDING"
     write_state(state_path, state)
 
     todo = []
