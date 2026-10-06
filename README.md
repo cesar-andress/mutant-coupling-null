@@ -1,6 +1,8 @@
 # mutant-coupling-null
 
-Research artifact for the Defects4J 3.0.1 / Major ordinary-test reference study of mutant–real-fault coupling. The LaTeX manuscript lives in a private companion repository.
+Replication artifact (v1.0.0) for a Defects4J 3.0.1 / Major 3.0.1 study of mutant–real-fault coupling with an ordinary-test reference arm.
+
+The LaTeX manuscript lives in a private companion repository.
 
 ## Scientific question
 
@@ -8,47 +10,36 @@ How much more often do fault-triggering tests satisfy the historical mutant–re
 
 The primary estimand is **excess coupling**: the mean bug-level difference between matched trigger and ordinary unique-kill rates in the NO_GAIN stratum.
 
-## Status
+Frozen primary result (n = 288): trigger 0.649, ordinary reference 0.227, excess 0.423, 95% CI [0.362, 0.481].
 
-- Environment: pinned Defects4J 3.0.1 / Java 11 / Major 3.0.1
-- Full-study primary analysis: `results/derived/full_study/primary_summary.json` (n=288; excess 0.423)
-- Independent recompute: EXACT (`scripts/audit_full_study.py`)
-- TOSEM core-completion existing-data analyses: `results/derived/full_study/core_completion/`
+## Reproduce manuscript outputs
 
-Regenerate primary and core-completion outputs from already-ingested maps:
+Follow `REPRODUCIBILITY.md`. In short: check out tag `v1.0.0`, download the GitHub Release canonical-map archive, verify its SHA-256, unpack it, then run:
 
 ```
 python3.12 scripts/run_full_study_analysis.py .
-python3.12 scripts/audit_full_study.py .
+python3.12 scripts/verify_primary_summary.py
 python3.12 scripts/run_tosem_core_completion.py .
 python3.12 scripts/generate_manuscript_tables.py .
-python3.12 -m unittest tests.test_core_completion
 ```
 
-These commands need local kill maps under `results/raw/t5/` (gitignored; bulky). Derived parquet/CSV/JSON under `results/derived/full_study/` are tracked.
+Protocol locks: `docs/protocol/`. Data package notes: `docs/data_package.md`.
 
-Full mutation acquisition (`scripts/full_study_campaign.py`) is closed and must not be re-run for manuscript completion.
+Full mutation acquisition (`scripts/full_study_campaign.py`) is closed.
 
+## Environment smoke
 
-## Reproduce the environment smoke
-
-Requires Docker, network only for the image build (open-source downloads).
-
-```
-./scripts/run_t3_smoke.sh
-```
-
-Details: `docs/environment.md`. Outputs of class `results/raw/smoke/` (manifest tracked; bulky logs ignored).
+Requires Docker. `./scripts/run_t3_smoke.sh` — details in `docs/environment.md`.
 
 ## What this repository is
 
-Original analysis code, configs, tests, and (later) derived tables for a chance-corrected test of mutant–real-fault coupling.
+Original analysis code, configs, tests, frozen derived tables, and protocol locks for the ordinary-test reference-rate study.
 
 ## What this repository is not
 
-- It does not redistribute Defects4J, Major, or other third-party benchmarks.
+- It does not redistribute Defects4J or Major source trees.
 - It does not contain confidential data.
-- It does not claim publication or journal acceptance.
+- It does not claim journal acceptance.
 - It does not contain the LaTeX manuscript.
 
 ## Licenses
@@ -56,11 +47,8 @@ Original analysis code, configs, tests, and (later) derived tables for a chance-
 | Material | License |
 |----------|---------|
 | Original code and documentation in this repository | MIT (see `LICENSE`) |
-| Third-party tools and benchmark data | remain under their upstream licenses |
-
-MIT here does **not** relicense Defects4J, Major, or any other third-party corpus.
-
-Acquisition notes: `data/README.md` and `external/`.
+| Third-party tools and benchmark source | remain under their upstream licenses |
+| Generated canonical kill maps (Release asset) | study outputs; see `docs/data_package.md` |
 
 ## Author
 
@@ -73,14 +61,4 @@ Machine-readable metadata: `CITATION.cff` and `.zenodo.json`.
 
 ## Cite this artifact
 
-Until Zenodo assigns a DOI, cite the GitHub repository and the version in `CITATION.cff` (currently 0.1.4). Do not invent a DOI.
-
-## Zenodo
-
-This GitHub repository is the canonical software source for a Zenodo deposit.
-
-1. On [Zenodo](https://zenodo.org), enable GitHub integration for `cesar-andress/mutant-coupling-null`.
-2. When a deposit is authorized, create a GitHub Release from a hygiene-checked tag.
-3. Put the version DOI into `CITATION.cff` after Zenodo mints it.
-
-Do not redistribute Defects4J or Major in the deposit. `.zenodo.json` is the deposit metadata template. See `docs/zenodo.md`.
+Until Zenodo assigns a DOI, cite the GitHub repository and version **1.0.0**. Do not invent a DOI.

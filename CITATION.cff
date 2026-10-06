@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "mutant-coupling-null: a chance-corrected test of mutant-real-fault coupling"
+title: "mutant-coupling-null: ordinary-test reference rates for mutant–real-fault coupling"
 message: "If you use this software, please cite it using the metadata from this file."
 type: software
 authors:
@@ -8,21 +8,28 @@ authors:
     orcid: "https://orcid.org/0009-0001-8968-3404"
     email: cesar.andress@ucjc.edu
     affiliation: "CRIA-BDHS Research Group, Escuela Politécnica Superior de Tecnología y Ciencia, Universidad Camilo José Cela, Spain"
-version: "0.1.4"
+version: "1.0.0"
 license: MIT
 repository-code: "https://github.com/cesar-andress/mutant-coupling-null"
 url: "https://github.com/cesar-andress/mutant-coupling-null"
-date-released: "2026-10-05"
+date-released: "2026-10-06"
 keywords:
   - mutation testing
   - mutant-real-fault coupling
   - test adequacy
   - construct validity
-  - chance-corrected coupling
+  - ordinary-test reference
 abstract: >-
-  Research artifact for a chance-corrected test of mutant-real-fault coupling.
-  The primary question is whether a fault-triggering test satisfies the
-  historical unique-kill coupling criterion more often than a coverage-matched
-  ordinary non-triggering test on the same kill matrices. No coupling estimates
-  are archived yet. This repository is the intended GitHub source for a future
-  Zenodo software deposit. No DOI is assigned yet.
+  Replication artifact for a Defects4J 3.0.1 / Major 3.0.1 study of
+  mutant–real-fault coupling with an ordinary-test reference arm.
+  The primary estimand is bug-level excess unique-kill rate in the NO_GAIN
+  stratum (n=288). Canonical kill maps are distributed as a GitHub Release
+  asset. No DOI is assigned yet.
+preferred-citation:
+  type: software
+  title: "Coupled to What? An Ordinary-Test Reference Rate for Mutant–Real-Fault Coupling"
+  authors:
+    - family-names: Andrés
+      given-names: César
+      orcid: "https://orcid.org/0009-0001-8968-3404"
+  year: 2026

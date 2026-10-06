@@ -16,11 +16,14 @@ def main() -> int:
     root = Path(__file__).resolve().parents[1]
     fs = root / "results" / "derived" / "full_study"
     cc = fs / "core_completion"
-    paper = root.parent / "paper"
-    tab = paper / "tables"
-    fig = paper / "figures"
+    export = fs / "manuscript_export"
+    tab = export / "tables"
+    figdir = export / "figures"
     tab.mkdir(parents=True, exist_ok=True)
-    fig.mkdir(parents=True, exist_ok=True)
+    figdir.mkdir(parents=True, exist_ok=True)
+    paper = root.parent / "paper"
+    if not (paper / "sections").is_dir():
+        paper = None
 
     s = json.loads((fs / "primary_summary.json").read_text())
     c = json.loads((cc / "summary.json").read_text())
@@ -122,10 +125,11 @@ def main() -> int:
         r"Analysis & Type & Result \\",
         r"\midrule",
         f"Mixed logistic (VB) & Pre-specified check & "
+        f"\\texttt{{statsmodels}} \\texttt{{BinomialBayesMixedGLM}} on "
+        f"{mixed['n_rows']} test-level rows ({mixed['n_bugs']} bugs, both strata). "
         f"Trigger OR $\\approx {mixed['trigger_or']:.1f}$ "
-        f"(approx.\\ 95\\% CI $[{mixed['approx_ci95_or'][0]:.1f}, {mixed['approx_ci95_or'][1]:.1f}]$); "
-        f"$n_{{\\mathrm{{rows}}}}={mixed['n_rows']}$, $n_{{\\mathrm{{bugs}}}}={mixed['n_bugs']}$. "
-        r"Direction agrees with primary; not a replacement estimand. \\",
+        f"(approx.\\ posterior interval $[{mixed['approx_ci95_or'][0]:.1f}, {mixed['approx_ci95_or'][1]:.1f}]$). "
+        r"Not comparable to RR 2.87. Fallback not invoked. \\\\",
         f"Timeout-only kills excluded & Pre-specified sensitivity & "
         f"$n={to['n']}$; excess ${to['mean']:.3f}$, 95\\% CI $[{to['ci95'][0]:.3f}, {to['ci95'][1]:.3f}]$. \\\\",
         f"FAIL-only kills & Robustness & "
@@ -143,7 +147,7 @@ def main() -> int:
         (
             "Project-mix reweight & Robustness & NOT\\_ESTIMABLE. \\\\"
             if rw["status"] != "COMPLETE"
-            else f"Project-mix reweight & Robustness & ${rw['estimate']:.3f}$. \\\\"
+            else f"Project-mix reweight & Directional robustness & ${rw['estimate']:.3f}$ (sparse-support weights; not a precision estimate). \\\\"
         ),
         r"Leave-one-project-out & Robustness & "
         r"Largest shift $+0.041$ (omit Math); all omitted CIs exclude 0. \\",
@@ -187,12 +191,55 @@ def main() -> int:
     ]
     (tab / "tab_failure_taxonomy.tex").write_text("\n".join(t4) + "\n")
 
-    # Copy figures
+    # Replot forest from frozen CSV with axis limits that include all CIs
+    import csv as _csv
+
+    forest_csv = cc / "project_forest.csv"
+    if forest_csv.is_file():
+        import matplotlib
+
+        matplotlib.use("Agg")
+        import matplotlib.pyplot as plt
+
+        rows = list(_csv.DictReader(forest_csv.open()))
+        rows.sort(key=lambda r: r["project"])
+        fig_ax, ax = plt.subplots(figsize=(7.4, 8.8))
+        ys = list(range(len(rows)))
+        labels = []
+        for y, r in zip(ys, rows):
+            m = float(r["excess"])
+            ax.plot(m, y, "o", color="C0", ms=5, zorder=3, clip_on=False)
+            if r["ci_lo"] and r["ci_hi"]:
+                ax.plot(
+                    [float(r["ci_lo"]), float(r["ci_hi"])],
+                    [y, y],
+                    color="C0",
+                    lw=1.2,
+                    clip_on=False,
+                    zorder=2,
+                )
+            cmp = 100.0 * float(r["completion_rate"])
+            labels.append(f"{r['project']} (n={r['n_matched']}, cmp={cmp:.0f}%)")
+        ax.axvline(0.0, color="0.5", lw=0.8, zorder=1)
+        ax.axvline(ex, color="0.2", ls="--", lw=0.8, label=f"primary mean {ex:.3f}", zorder=1)
+        ax.set_yticks(ys)
+        ax.set_yticklabels(labels, fontsize=7)
+        ax.set_xlabel("Mean bug-level excess (NO_GAIN matched)")
+        ax.set_title("Project-level excess among primary matched bugs")
+        ax.set_xlim(-0.40, 1.05)
+        ax.set_xticks([-0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
+        ax.legend(fontsize=7, loc="lower right")
+        fig_ax.tight_layout()
+        out_png = fs / "figures" / "fig_project_forest.png"
+        fig_ax.savefig(out_png, dpi=160)
+        fig_ax.savefig(cc / "figures" / "fig_project_forest.png", dpi=160)
+        fig_ax.savefig(figdir / "fig_project_forest.png", dpi=160)
+        plt.close(fig_ax)
+
+    # Copy remaining figures into export (do not overwrite the forest replot)
     copies = [
-        (fs / "figures" / "fig_rq1_paired_rates_jitter.png", fig / "fig_rq1_paired_rates.png"),
-        (fs / "figures" / "fig_project_forest.png", fig / "fig_project_forest.png"),
-        (cc / "figures" / "fig_rq1_paired_rates_jitter.png", fig / "fig_rq1_paired_rates.png"),
-        (cc / "figures" / "fig_project_forest.png", fig / "fig_project_forest.png"),
+        (fs / "figures" / "fig_rq1_paired_rates_jitter.png", figdir / "fig_rq1_paired_rates.png"),
+        (cc / "figures" / "fig_rq1_paired_rates_jitter.png", figdir / "fig_rq1_paired_rates.png"),
     ]
     for src, dst in copies:
         if src.is_file():
@@ -214,7 +261,18 @@ def main() -> int:
         "figures": ["fig_rq1_paired_rates.png", "fig_project_forest.png"],
     }
     (tab / "GENERATION_META.json").write_text(json.dumps(meta, indent=2) + "\n")
-    print("Wrote manuscript tables/figures into", paper)
+
+    if paper is not None:
+        pt, pf = paper / "tables", paper / "figures"
+        pt.mkdir(parents=True, exist_ok=True)
+        pf.mkdir(parents=True, exist_ok=True)
+        for src in tab.glob("*.tex"):
+            shutil.copy2(src, pt / src.name)
+        shutil.copy2(tab / "GENERATION_META.json", pt / "GENERATION_META.json")
+        for src in figdir.glob("*.png"):
+            shutil.copy2(src, pf / src.name)
+
+    print("Wrote manuscript tables/figures into", export)
     return 0
 
 

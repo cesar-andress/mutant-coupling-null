@@ -1,0 +1,21 @@
+{
+  "r_trigger": 0.649,
+  "r_placebo": 0.227,
+  "excess": 0.423,
+  "ci": [
+    0.362,
+    0.481
+  ],
+  "halfwidth": 0.059,
+  "core_completion_lock": "TOSEM-CORE-COMPLETION-20261006-V1",
+  "tables": [
+    "tab_sample_flow.tex",
+    "tab_rq1_primary.tex",
+    "tab_robustness.tex",
+    "tab_failure_taxonomy.tex"
+  ],
+  "figures": [
+    "fig_rq1_paired_rates.png",
+    "fig_project_forest.png"
+  ]
+}

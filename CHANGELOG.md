@@ -1,5 +1,11 @@
 # Change log
 
+## 1.0.0 — 2026-10-06
+
+- Frozen full-study primary result and existing-data robustness.
+- Canonical 481-map GitHub Release asset and protocol locks.
+- No DOI yet.
+
 ## 0.1.4 — 2026-10-05
 
 - T9b precision-extension derived tables (`results/derived/mvp_t9b/`). Original T9 `results/derived/mvp/` retained.

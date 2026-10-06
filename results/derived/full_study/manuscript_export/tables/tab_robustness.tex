@@ -1,0 +1,26 @@
+% Auto-generated from core_completion/summary.json
+\begin{table*}[t]
+\centering
+\caption{Pre-specified checks and robustness diagnostics. None replaces the locked primary NO\_GAIN bug-level bootstrap.}
+\Description{Robustness table including mixed-model check, kill-reason, matching, clustering, and missingness tipping points.}
+\label{tab:robustness}
+\small
+\begin{tabular}{@{}p{3.2cm}p{2.2cm}p{9.0cm}@{}}
+\toprule
+Analysis & Type & Result \\
+\midrule
+Mixed logistic (VB) & Pre-specified check & \texttt{statsmodels} \texttt{BinomialBayesMixedGLM} on 120160 test-level rows (481 bugs, both strata). Trigger OR $\approx 36.4$ (approx.\ posterior interval $[29.1, 45.6]$). Not comparable to RR 2.87. Fallback not invoked. \\\\
+Timeout-only kills excluded & Pre-specified sensitivity & $n=288$; excess $0.444$, 95\% CI $[0.384, 0.504]$. \\
+FAIL-only kills & Robustness & $n=288$; excess $0.300$, 95\% CI $[0.241, 0.358]$. \\
+Same-class matching required & Pre-specified variant & $n=252$; excess $0.381$, 95\% CI $[0.317, 0.445]$ (support loss vs 288). \\
+Single-trigger bugs only & Post-hoc robustness & $n=194$; excess $0.394$, 95\% CI $[0.316, 0.470]$. \\
+Project-clustered bootstrap & Robustness CI & Point $0.423$; 95\% CI $[0.317, 0.528]$ ($B=10000$, 17 projects). \\
+Equal-project-weight mean & Robustness & $0.436$, 95\% CI $[0.359, 0.510]$. \\
+Project-mix reweight & Directional robustness & $0.471$ (sparse-support weights; not a precision estimate). \\
+Leave-one-project-out & Robustness & Largest shift $+0.041$ (omit Math); all omitted CIs exclude 0. \\
+Max leave-one-bug-out & Robustness & $|\Delta|\approx 0.005$ (Lang-40). \\
+Missingness tipping point & Diagnostic & Conv.\ A: $e=-0.326$; Conv.\ B ($n_u=223$): $e=-0.546$. Not estimates. \\
+Fault-level reconstruction & Pipeline context & 385/481 (80.0\%) coupled; not comparable as an excess estimand. \\
+\bottomrule
+\end{tabular}
+\end{table*}

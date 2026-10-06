@@ -8,6 +8,8 @@ This repository is the GitHub source for a future Zenodo software record.
 - GitHub: https://github.com/cesar-andress/mutant-coupling-null
 - DOI: not assigned yet (do not invent one)
 
+After GitHub Release `v1.0.0` exists, archive that tag on Zenodo in a later step.
+
 Metadata files at the repository root:
 
 - `.zenodo.json`
