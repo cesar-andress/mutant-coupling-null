@@ -1,0 +1,337 @@
+{
+  "lock_id": "TOSEM-CORE-COMPLETION-20261006-V1",
+  "generated_at": "2026-10-06T16:06:00.950533+00:00",
+  "primary_unchanged": {
+    "n": 288,
+    "r_trigger": 0.6493827160493827,
+    "r_placebo": 0.2266392522911936,
+    "excess": 0.4227434637581891,
+    "ci95": [
+      0.3624604432266677,
+      0.48129122021336346
+    ]
+  },
+  "model_check": {
+    "mixed_status": "CONVERGED_VB",
+    "fallback_status": null,
+    "mixed": {
+      "method": "BinomialBayesMixedGLM_VB",
+      "trigger_coef_log_odds": 3.595001215259163,
+      "trigger_se": 0.11423920251463437,
+      "trigger_or": 36.415744242419024,
+      "approx_ci95_or": [
+        29.110309166520263,
+        45.554529192511225
+      ],
+      "n_rows": 120160,
+      "n_bugs": 481,
+      "note": "Variational Bayes mixed logistic; check only, not primary."
+    },
+    "conditional_logit": null
+  },
+  "timeout_only": {
+    "n": 288,
+    "mean": 0.44417671289222577,
+    "ci95": [
+      0.3839273590294858,
+      0.5043237875037054
+    ],
+    "halfwidth": 0.060198214237109804
+  },
+  "fail_only": {
+    "n": 288,
+    "mean": 0.30039483388752347,
+    "ci95": [
+      0.24129652545098823,
+      0.3580694783011855
+    ],
+    "halfwidth": 0.05838647642509864
+  },
+  "same_class_required": {
+    "n": 252,
+    "mean": 0.38106438211607274,
+    "ci95": [
+      0.3174870006218218,
+      0.4449194161134422
+    ],
+    "halfwidth": 0.06371620774581022,
+    "n_trigger_support_bugs": 304,
+    "n_matched": 252,
+    "support_note": "Requires same test class; no bin-wide fallback"
+  },
+  "single_trigger": {
+    "n": 194,
+    "mean": 0.39418940158747706,
+    "ci95": [
+      0.3158178942817022,
+      0.46989982272861575
+    ],
+    "halfwidth": 0.07704096422345677,
+    "n_canonical_single_trigger": 335,
+    "n_primary_single_trigger": 194
+  },
+  "project_clustered_bootstrap": {
+    "n_projects": 17,
+    "n_bugs": 288,
+    "point_bug_weighted": 0.4227434637581892,
+    "ci95": [
+      0.31749571603079474,
+      0.5283153495742692
+    ],
+    "B": 10000,
+    "seed": 20261009,
+    "method": "two_stage_project_then_bug"
+  },
+  "equal_project_weight": {
+    "mean": 0.4364437528274885,
+    "ci95": [
+      0.3587619523074969,
+      0.5102146679652069
+    ],
+    "n_projects": 17,
+    "project_means": {
+      "Collections": 0.4223085431169663,
+      "Lang": 0.4207611016434546,
+      "JacksonDatabind": 0.6666666666666666,
+      "Csv": 0.5354490250611027,
+      "Jsoup": 0.5280251362188112,
+      "Math": 0.24567727763759634,
+      "Compress": 0.5593491242650908,
+      "Chart": 0.37894784953608485,
+      "Codec": 0.43058120504944103,
+      "Closure": 0.6280199421721555,
+      "Time": 0.3184928864239209,
+      "JacksonXml": 0.6377165445878387,
+      "JacksonCore": 0.20342261904761905,
+      "Gson": 0.508170530623597,
+      "JxPath": 0.4983828619166965,
+      "Cli": 0.048169191919191924,
+      "Mockito": 0.38940329218106995
+    },
+    "B": 10000,
+    "seed": 20261010
+  },
+  "mutation_failure_taxonomy": {
+    "n": 266,
+    "counts": {
+      "MUTATION_TEST_FAIL": 158,
+      "RESOURCE_EXHAUSTION_OOM": 92,
+      "MAJOR_MUTATE_FAILURE": 13,
+      "COMPILE_FAILURE_DURING_MUTATION": 3
+    },
+    "unknown": 0,
+    "by_project_top": {
+      "JacksonDatabind": {
+        "MUTATION_TEST_FAIL": 98
+      },
+      "Closure": {
+        "RESOURCE_EXHAUSTION_OOM": 92,
+        "MUTATION_TEST_FAIL": 1
+      },
+      "Cli": {
+        "MUTATION_TEST_FAIL": 25
+      },
+      "Mockito": {
+        "MAJOR_MUTATE_FAILURE": 12,
+        "MUTATION_TEST_FAIL": 11
+      },
+      "Jsoup": {
+        "MUTATION_TEST_FAIL": 12
+      },
+      "Time": {
+        "MUTATION_TEST_FAIL": 5
+      },
+      "Compress": {
+        "MUTATION_TEST_FAIL": 3
+      },
+      "Lang": {
+        "MUTATION_TEST_FAIL": 3
+      }
+    }
+  },
+  "tipping_point": {
+    "primary_mean_unrounded": 0.4227434637581891,
+    "n_primary": 288,
+    "n_missing_canonical": 373,
+    "convention_A_required_mean_excess": -0.32640782188299855,
+    "convention_B_projected_primary_missing_n": 223,
+    "convention_B_required_mean_excess": -0.5459646527460021,
+    "label": "TIPPING_POINT_ANALYSIS"
+  },
+  "tertiles_suite_size": [
+    {
+      "tertile": "T1_low",
+      "n": 96,
+      "r_trigger": 0.6255787037037037,
+      "r_placebo": 0.24378241992182317,
+      "excess": 0.3817962837818805,
+      "min": 4,
+      "max": 83
+    },
+    {
+      "tertile": "T2_mid",
+      "n": 96,
+      "r_trigger": 0.71875,
+      "r_placebo": 0.23443255629051385,
+      "excess": 0.48431744370948615,
+      "min": 85,
+      "max": 274
+    },
+    {
+      "tertile": "T3_high",
+      "n": 96,
+      "r_trigger": 0.6038194444444445,
+      "r_placebo": 0.20170278066124347,
+      "excess": 0.402116663783201,
+      "min": 278,
+      "max": 4011
+    }
+  ],
+  "tertiles_runtime": [
+    {
+      "tertile": "T1_low",
+      "n": 95,
+      "r_trigger": 0.6105263157894737,
+      "r_placebo": 0.20221704307617622,
+      "excess": 0.4083092727132975,
+      "min": 2.67,
+      "max": 36.42
+    },
+    {
+      "tertile": "T2_mid",
+      "n": 96,
+      "r_trigger": 0.6325231481481481,
+      "r_placebo": 0.25543975497956223,
+      "excess": 0.3770833931685859,
+      "min": 36.79,
+      "max": 244.16
+    },
+    {
+      "tertile": "T3_high",
+      "n": 95,
+      "r_trigger": 0.6978947368421052,
+      "r_placebo": 0.21545095282274146,
+      "excess": 0.4824437840193638,
+      "min": 247.08,
+      "max": 1698.27
+    }
+  ],
+  "project_mix_reweight": {
+    "status": "COMPLETE",
+    "estimate": 0.470598613943703,
+    "formula": "w_p = N_target_p / N_matched_p; weighted mean of bug excess"
+  },
+  "historical_fault_level": {
+    "n_evaluable": 481,
+    "n_coupled": 385,
+    "pct_coupled": 80.04158004158005,
+    "by_project": {
+      "Chart": {
+        "n": 20,
+        "coupled": 18,
+        "pct": 90.0
+      },
+      "Cli": {
+        "n": 14,
+        "coupled": 8,
+        "pct": 57.142857142857146
+      },
+      "Closure": {
+        "n": 41,
+        "coupled": 39,
+        "pct": 95.1219512195122
+      },
+      "Codec": {
+        "n": 18,
+        "coupled": 13,
+        "pct": 72.22222222222223
+      },
+      "Collections": {
+        "n": 28,
+        "coupled": 19,
+        "pct": 67.85714285714286
+      },
+      "Compress": {
+        "n": 35,
+        "coupled": 32,
+        "pct": 91.42857142857143
+      },
+      "Csv": {
+        "n": 16,
+        "coupled": 11,
+        "pct": 68.75
+      },
+      "Gson": {
+        "n": 12,
+        "coupled": 9,
+        "pct": 75.0
+      },
+      "JacksonCore": {
+        "n": 22,
+        "coupled": 19,
+        "pct": 86.36363636363636
+      },
+      "JacksonDatabind": {
+        "n": 12,
+        "coupled": 11,
+        "pct": 91.66666666666667
+      },
+      "JacksonXml": {
+        "n": 6,
+        "coupled": 5,
+        "pct": 83.33333333333333
+      },
+      "Jsoup": {
+        "n": 66,
+        "coupled": 55,
+        "pct": 83.33333333333333
+      },
+      "JxPath": {
+        "n": 22,
+        "coupled": 17,
+        "pct": 77.27272727272727
+      },
+      "Lang": {
+        "n": 58,
+        "coupled": 54,
+        "pct": 93.10344827586206
+      },
+      "Math": {
+        "n": 88,
+        "coupled": 62,
+        "pct": 70.45454545454545
+      },
+      "Mockito": {
+        "n": 10,
+        "coupled": 6,
+        "pct": 60.0
+      },
+      "Time": {
+        "n": 13,
+        "coupled": 7,
+        "pct": 53.84615384615385
+      }
+    },
+    "comparison_wording": "may_reflect_differences"
+  },
+  "unique_kill_counts": {
+    "trigger_matched_nogain": {
+      "n": 447,
+      "median": 1,
+      "q1": 0,
+      "q3": 3,
+      "mean": 3.440715883668904
+    },
+    "ordinary_matched_references": {
+      "n": 8061,
+      "median": 0,
+      "q1": 0,
+      "q3": 0,
+      "mean": 0.3767522639870984
+    }
+  },
+  "figures": {
+    "forest": "results/derived/full_study/core_completion/figures/fig_project_forest.png",
+    "paired_jitter": "results/derived/full_study/core_completion/figures/fig_rq1_paired_rates_jitter.png"
+  }
+}

@@ -1,34 +1,33 @@
 # mutant-coupling-null
 
-Research artifact under active development. Not a published paper. No results exist yet.
+Research artifact for the Defects4J 3.0.1 / Major ordinary-test reference study of mutant–real-fault coupling. The LaTeX manuscript lives in a private companion repository.
 
 ## Scientific question
 
-Does a fault-triggering test satisfy the historical mutant–real-fault coupling criterion more often than a comparable ordinary non-triggering test?
+How much more often do fault-triggering tests satisfy the historical mutant–real-fault coupling event than comparable ordinary non-triggering tests?
 
-The primary estimand is **excess coupling**: the coupling rate among fault-triggering tests minus the coupling rate among coverage-matched non-trigger tests, on the same mutant kill matrices.
+The primary estimand is **excess coupling**: the mean bug-level difference between matched trigger and ordinary unique-kill rates in the NO_GAIN stratum.
 
 ## Status
 
-- Local overlap gate: PASS
-- Global novelty / scoop gate: PARTIAL (scientifically distinct)
 - Environment: pinned Defects4J 3.0.1 / Java 11 / Major 3.0.1
-- MVP (T9/T9b): complete (see `results/derived/mvp/` and `mvp_t9b/`)
-- Full study: **analysis tables generated** under `results/derived/full_study/`
-- The LaTeX manuscript is **not** in this repository; Results prose is not claimed here
+- Full-study primary analysis: `results/derived/full_study/primary_summary.json` (n=288; excess 0.423)
+- Independent recompute: EXACT (`scripts/audit_full_study.py`)
+- TOSEM core-completion existing-data analyses: `results/derived/full_study/core_completion/`
 
-Independent recompute of the locked primary analysis:
+Regenerate primary and core-completion outputs from already-ingested maps:
 
 ```
-python3.10 scripts/audit_full_study.py .
-python3.10 scripts/run_full_study_analysis.py .
+python3.12 scripts/run_full_study_analysis.py .
+python3.12 scripts/audit_full_study.py .
+python3.12 scripts/run_tosem_core_completion.py .
+python3.12 scripts/generate_manuscript_tables.py .
+python3.12 -m unittest tests.test_core_completion
 ```
 
-These commands need local Route A maps under `results/raw/t5/` (gitignored; bulky). Derived parquet/CSV/JSON in `results/derived/full_study/` are tracked.
+These commands need local kill maps under `results/raw/t5/` (gitignored; bulky). Derived parquet/CSV/JSON under `results/derived/full_study/` are tracked.
 
-Expected analysis wall time: minutes, not hours, once maps exist.
-
-Full mutation acquisition is a multi-hour Docker campaign (`scripts/full_study_campaign.py`) and is not required to regenerate tables from already-ingested maps.
+Full mutation acquisition (`scripts/full_study_campaign.py`) is closed and must not be re-run for manuscript completion.
 
 
 ## Reproduce the environment smoke
